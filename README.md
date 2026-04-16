@@ -48,3 +48,4 @@ docker run -p 8000:8000 --env-file .env marketing-service
 
 - Swagger: http://localhost:8000/docs
 - Health: http://localhost:8000/marketing-service/health
+# dm-service
