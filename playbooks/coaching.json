@@ -1,0 +1,44 @@
+{
+  "sector": "coaching",
+  "display_name": "Education / Coaching / Tuition",
+  "channels": [
+    {"name": "meta_ads", "priority": 1, "reason": "Lead generation ads for parent audience"},
+    {"name": "youtube", "priority": 2, "reason": "Free demo classes build trust and authority"},
+    {"name": "instagram", "priority": 3, "posts_per_week": 4, "reason": "Student results and institute brand"},
+    {"name": "whatsapp", "priority": 4, "messages_per_week": 2, "reason": "Batch updates, exam tips, enrollment pushes"},
+    {"name": "google_ads", "priority": 5, "reason": "Capture parents searching for tuition classes"}
+  ],
+  "content_types": ["post", "reel_script", "campaign_message"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Student achievement / result showcase"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Quick study tip or concept explainer"},
+    "friday": {"channel": "instagram", "type": "post", "topic": "Teacher spotlight / methodology highlight"},
+    "saturday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Free demo class invite / enrollment push"}
+  },
+  "content_guidelines": {
+    "tone": "Authoritative yet encouraging. Speak to parents AND students.",
+    "hashtag_strategy": "#Education #BoardExams #IITPrep #NEET + local education tags",
+    "cta_patterns": ["Enroll now", "Book free demo class", "Limited seats", "Call for details"],
+    "visual_style": "Student results, classroom energy, teacher profiles, toppers with scores"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 5000,
+    "avg_monthly_footfall": 50,
+    "avg_cpc": 20,
+    "avg_ctr": 2.0,
+    "avg_conversion_rate": 0.12,
+    "best_posting_times": ["08:00", "16:00", "20:00"],
+    "top_content_types": ["student_results", "demo_clips", "study_tips", "parent_testimonials"]
+  },
+  "festivals": [
+    {"name": "Board Results", "month": 5, "campaign": "Topper showcase + new batch enrollment"},
+    {"name": "New Academic Year", "month": 6, "campaign": "Early bird enrollment discount"},
+    {"name": "Exam Season", "month": 2, "campaign": "Crash course / revision batch"},
+    {"name": "Summer", "month": 4, "campaign": "Summer foundation course / hobby classes"}
+  ],
+  "compliance": {
+    "required_mentions": [],
+    "prohibited": ["Guaranteed rank/score claims", "Fake testimonials", "Disparaging other institutes"],
+    "notes": "Use real results only. Disclaim that results vary."
+  }
+}

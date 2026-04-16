@@ -1,0 +1,43 @@
+{
+  "sector": "local_service",
+  "display_name": "Local Services (Plumber, Electrician, Cleaning, AC Repair, etc.)",
+  "channels": [
+    {"name": "google_ads", "priority": 1, "reason": "'plumber near me' and service-specific searches are highest intent"},
+    {"name": "google_business", "priority": 2, "posts_per_week": 2, "reason": "Local pack listing and reviews are critical"},
+    {"name": "whatsapp", "priority": 3, "messages_per_week": 1, "reason": "Booking confirmations and seasonal reminders"},
+    {"name": "instagram", "priority": 4, "posts_per_week": 2, "reason": "Work photos and customer reviews build trust"},
+    {"name": "facebook", "priority": 5, "reason": "Community groups and local recommendations"}
+  ],
+  "content_types": ["post", "campaign_message", "gmb_post"],
+  "posting_schedule": {
+    "monday": {"channel": "google_business", "type": "gmb_post", "topic": "Service highlight / availability update"},
+    "wednesday": {"channel": "instagram", "type": "post", "topic": "Completed job photo / before-after"},
+    "friday": {"channel": "instagram", "type": "post", "topic": "Customer testimonial / review screenshot"},
+    "saturday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Seasonal service reminder / booking offer"}
+  },
+  "content_guidelines": {
+    "tone": "Reliable, professional, transparent about pricing.",
+    "hashtag_strategy": "#PlumberNearMe #ACRepair + city-specific + service-specific",
+    "cta_patterns": ["Call now", "Book today", "Free estimate", "Same-day service available"],
+    "visual_style": "Before/after work photos, team at work, tools/equipment, customer handshakes"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 1500,
+    "avg_monthly_footfall": 80,
+    "avg_cpc": 20,
+    "avg_ctr": 4.0,
+    "avg_conversion_rate": 0.30,
+    "best_posting_times": ["08:00", "12:00", "17:00"]
+  },
+  "festivals": [
+    {"name": "Pre-Diwali", "month": 10, "campaign": "Diwali deep cleaning packages"},
+    {"name": "Monsoon", "month": 7, "campaign": "Monsoon plumbing/electrical checkup"},
+    {"name": "Summer", "month": 4, "campaign": "AC servicing — book early"},
+    {"name": "Pre-Wedding Season", "month": 11, "campaign": "Home renovation and painting services"}
+  ],
+  "compliance": {
+    "required_mentions": [],
+    "prohibited": ["Fake pricing to lure customers", "Work without proper licensing where required"],
+    "notes": "Transparent pricing builds trust. Always show rate card or estimate process."
+  }
+}

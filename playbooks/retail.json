@@ -1,0 +1,39 @@
+{
+  "sector": "retail",
+  "display_name": "Retail Shop / Store",
+  "channels": [
+    {"name": "instagram", "priority": 1, "posts_per_week": 4, "reason": "Product showcase and new arrivals"},
+    {"name": "whatsapp", "priority": 2, "messages_per_week": 2, "reason": "Flash sales, new stock alerts, loyalty"},
+    {"name": "google_business", "priority": 3, "posts_per_week": 2, "reason": "Local discovery and store hours"},
+    {"name": "meta_ads", "priority": 4, "reason": "Hyperlocal targeting for store visits"},
+    {"name": "facebook", "priority": 5, "reason": "Community and event promotion"}
+  ],
+  "content_types": ["post", "reel_script", "story", "campaign_message", "gmb_post"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "New arrivals / fresh stock"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Product styling / how to use"},
+    "thursday": {"channel": "google_business", "type": "gmb_post", "topic": "Store offer or featured product"},
+    "friday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Weekend sale / exclusive offer"},
+    "saturday": {"channel": "instagram", "type": "post", "topic": "Customer wearing/using product / UGC"}
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 1000,
+    "avg_monthly_footfall": 400,
+    "avg_cpc": 12,
+    "avg_ctr": 2.5,
+    "avg_conversion_rate": 0.18,
+    "best_posting_times": ["10:00", "14:00", "19:00"]
+  },
+  "festivals": [
+    {"name": "Diwali", "month": 10, "campaign": "Diwali mega sale"},
+    {"name": "Eid", "month": 3, "campaign": "Eid collection launch"},
+    {"name": "End of Season", "month": 1, "campaign": "End of season clearance — up to 50% off"},
+    {"name": "Rakhi", "month": 8, "campaign": "Rakhi gifts collection"},
+    {"name": "Christmas", "month": 12, "campaign": "Christmas special / year-end sale"}
+  ],
+  "compliance": {
+    "required_mentions": ["MRP on products if shown"],
+    "prohibited": ["Fake discounts (inflated MRP)", "Misleading stock claims"],
+    "notes": "Ensure return policy is visible in promotions"
+  }
+}

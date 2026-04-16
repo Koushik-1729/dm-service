@@ -1,0 +1,37 @@
+{
+  "sector": "real_estate",
+  "display_name": "Real Estate / Builders / Brokers",
+  "channels": [
+    {"name": "meta_ads", "priority": 1, "reason": "Lead generation ads are the primary driver for real estate"},
+    {"name": "google_ads", "priority": 2, "reason": "High-intent searches like 'flats in [area]'"},
+    {"name": "whatsapp", "priority": 3, "messages_per_week": 3, "reason": "Lead nurturing over long sales cycles"},
+    {"name": "youtube", "priority": 4, "reason": "Virtual tours and project walkthroughs"},
+    {"name": "instagram", "priority": 5, "posts_per_week": 3, "reason": "Lifestyle imagery and project updates"}
+  ],
+  "content_types": ["post", "reel_script", "campaign_message", "ad_copy"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Property highlight / amenity showcase"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Virtual tour / walkthrough"},
+    "friday": {"channel": "instagram", "type": "post", "topic": "Location advantage / lifestyle"},
+    "saturday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Site visit invite / price update / limited units"}
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 5000000,
+    "avg_monthly_footfall": 20,
+    "avg_cpc": 50,
+    "avg_ctr": 1.8,
+    "avg_conversion_rate": 0.03,
+    "best_posting_times": ["10:00", "14:00", "19:00"]
+  },
+  "festivals": [
+    {"name": "Akshaya Tritiya", "month": 5, "campaign": "Auspicious buying — special launch offer"},
+    {"name": "Navratri", "month": 10, "campaign": "Festive booking offers"},
+    {"name": "Diwali", "month": 10, "campaign": "Diwali special — zero stamp duty / gold coin offer"},
+    {"name": "Ugadi/Gudi Padwa", "month": 3, "campaign": "New year new home — pre-launch prices"}
+  ],
+  "compliance": {
+    "required_mentions": ["RERA registration number mandatory in all ads", "Price disclaimer"],
+    "prohibited": ["Unregistered project promotion", "Misleading area/size claims", "Fake booking numbers"],
+    "notes": "All real estate ads in India must display RERA number prominently"
+  }
+}

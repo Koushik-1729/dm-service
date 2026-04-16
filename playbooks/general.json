@@ -1,0 +1,47 @@
+{
+  "sector": "general",
+  "display_name": "General Business",
+  "channels": [
+    {"name": "instagram", "priority": 1, "posts_per_week": 3, "reason": "Visual discovery and brand building"},
+    {"name": "whatsapp", "priority": 2, "messages_per_week": 2, "reason": "Direct customer communication and offers"},
+    {"name": "google_business", "priority": 3, "posts_per_week": 1, "reason": "Local search visibility"},
+    {"name": "facebook", "priority": 4, "reason": "Community and older demographics"}
+  ],
+  "content_types": ["post", "reel_script", "campaign_message"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Product/service highlight"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Behind the scenes / process"},
+    "friday": {"channel": "instagram", "type": "post", "topic": "Weekend offer / customer story"},
+    "saturday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Weekly deals / new arrivals"}
+  },
+  "content_guidelines": {
+    "tone": "Professional yet approachable. Adapt to business personality.",
+    "hashtag_strategy": "10-15 hashtags mixing local, niche, and broad terms",
+    "cta_patterns": ["Contact us", "Visit today", "Book now", "DM for details"],
+    "visual_style": "Clean, well-lit, authentic photos of the business"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 500,
+    "avg_monthly_footfall": 300,
+    "avg_cpc": 15,
+    "avg_ctr": 2.5,
+    "avg_conversion_rate": 0.15,
+    "best_posting_times": ["09:00", "13:00", "18:00"],
+    "top_content_types": ["product_showcase", "testimonials", "behind_the_scenes", "offers"]
+  },
+  "city_benchmarks": {
+    "default": {"avg_cpc": 15, "avg_ctr": 2.5}
+  },
+  "festivals": [
+    {"name": "Diwali", "month": 10, "campaign": "Festive offer / Diwali special"},
+    {"name": "New Year", "month": 12, "campaign": "Year-end sale / New Year offer"},
+    {"name": "Republic Day", "month": 1, "campaign": "Republic Day special"},
+    {"name": "Holi", "month": 3, "campaign": "Holi celebration offer"},
+    {"name": "Independence Day", "month": 8, "campaign": "Independence Day offer"}
+  ],
+  "compliance": {
+    "required_mentions": [],
+    "prohibited": ["Misleading claims", "Fake testimonials", "Competitor defamation"],
+    "notes": "Follow platform-specific advertising policies"
+  }
+}

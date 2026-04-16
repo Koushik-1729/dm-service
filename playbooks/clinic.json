@@ -1,0 +1,46 @@
+{
+  "sector": "clinic",
+  "display_name": "Doctor / Clinic / Healthcare",
+  "channels": [
+    {"name": "google_ads", "priority": 1, "reason": "'dentist near me' and 'doctor near me' are highest-intent searches"},
+    {"name": "google_business", "priority": 2, "posts_per_week": 2, "reason": "Reviews and GMB listing drive 60% of local healthcare discovery"},
+    {"name": "whatsapp", "priority": 3, "messages_per_week": 1, "reason": "Appointment reminders and health tips retain patients"},
+    {"name": "instagram", "priority": 4, "posts_per_week": 3, "reason": "Trust-building through doctor profiles and patient stories"},
+    {"name": "youtube", "priority": 5, "reason": "Health awareness videos build authority"}
+  ],
+  "content_types": ["post", "reel_script", "campaign_message", "gmb_post"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Health tip / awareness"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Doctor introduction / procedure explainer"},
+    "thursday": {"channel": "google_business", "type": "gmb_post", "topic": "Service highlight or health awareness"},
+    "friday": {"channel": "instagram", "type": "post", "topic": "Patient testimonial (with consent)"},
+    "saturday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Health camp / checkup reminder"}
+  },
+  "content_guidelines": {
+    "tone": "Professional, trustworthy, empathetic. Avoid being overly casual.",
+    "hashtag_strategy": "Mix medical (#DentalCare #Orthopaedics) + local (#HyderabadDoctor) + awareness (#HealthTips)",
+    "cta_patterns": ["Book your appointment", "Call us today", "Walk-in welcome", "Free consultation this week"],
+    "visual_style": "Clean clinical environment, doctor portraits, before/after (with consent), infographics"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 1500,
+    "avg_monthly_footfall": 200,
+    "avg_cpc": 25,
+    "avg_ctr": 3.5,
+    "avg_conversion_rate": 0.25,
+    "best_posting_times": ["09:00", "13:00", "18:00"],
+    "top_content_types": ["doctor_profiles", "patient_testimonials", "health_tips", "procedure_explainers"]
+  },
+  "festivals": [
+    {"name": "World Health Day", "month": 4, "campaign": "Free health checkup camp"},
+    {"name": "World Heart Day", "month": 9, "campaign": "Cardiac screening offer"},
+    {"name": "Dental Health Week", "month": 2, "campaign": "Free dental checkup"},
+    {"name": "Diabetes Awareness Month", "month": 11, "campaign": "Blood sugar screening camp"},
+    {"name": "Eye Care Week", "month": 10, "campaign": "Free vision screening"}
+  ],
+  "compliance": {
+    "required_mentions": ["Doctor registration number", "Clinic registration"],
+    "prohibited": ["Guaranteed cure claims", "Before/after without consent", "Disparaging other doctors", "Unverified medical claims"],
+    "notes": "Follow Indian Medical Council advertising guidelines. No misleading success rates."
+  }
+}

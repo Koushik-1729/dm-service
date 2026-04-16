@@ -1,0 +1,47 @@
+{
+  "sector": "gym",
+  "display_name": "Gym / Fitness Studio",
+  "channels": [
+    {"name": "instagram", "priority": 1, "posts_per_week": 5, "reason": "Fitness transformations and reels drive massive engagement"},
+    {"name": "whatsapp", "priority": 2, "messages_per_week": 2, "reason": "Trial class invites and membership renewals"},
+    {"name": "google_business", "priority": 3, "posts_per_week": 1, "reason": "Gym near me searches"},
+    {"name": "meta_ads", "priority": 4, "reason": "Lead generation for trial memberships"},
+    {"name": "youtube", "priority": 5, "reason": "Workout videos build authority"}
+  ],
+  "content_types": ["post", "reel_script", "story", "campaign_message"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "reel_script", "topic": "Monday motivation / workout clip"},
+    "tuesday": {"channel": "instagram", "type": "story", "topic": "Trainer tip / form check"},
+    "wednesday": {"channel": "instagram", "type": "post", "topic": "Member transformation story"},
+    "thursday": {"channel": "instagram", "type": "reel_script", "topic": "Exercise tutorial"},
+    "friday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Weekend warrior challenge / trial invite"},
+    "saturday": {"channel": "instagram", "type": "post", "topic": "Community / group workout / event"},
+    "sunday": {"channel": "instagram", "type": "story", "topic": "Rest day tips / nutrition advice"}
+  },
+  "content_guidelines": {
+    "tone": "Energetic, motivational, inclusive. Not intimidating.",
+    "hashtag_strategy": "#FitnessMotivation #GymLife #TransformationStory + local gym tags",
+    "cta_patterns": ["Join free trial", "Book your first session", "DM for membership details", "Tag your gym buddy"],
+    "visual_style": "Action shots, transformation before/after, trainer demos, community energy"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 2500,
+    "avg_monthly_footfall": 150,
+    "avg_cpc": 15,
+    "avg_ctr": 2.5,
+    "avg_conversion_rate": 0.15,
+    "best_posting_times": ["06:00", "12:00", "18:00"],
+    "top_content_types": ["transformation_reels", "workout_clips", "trainer_tips", "member_stories"]
+  },
+  "festivals": [
+    {"name": "New Year", "month": 1, "campaign": "New year resolution — 50% off first month"},
+    {"name": "Summer Body", "month": 3, "campaign": "Summer body challenge — 8 week program"},
+    {"name": "Pre-Wedding", "month": 9, "campaign": "Wedding prep fitness package"},
+    {"name": "Independence Day", "month": 8, "campaign": "Freedom from excuses — free trial week"}
+  ],
+  "compliance": {
+    "required_mentions": [],
+    "prohibited": ["Unrealistic body transformation timelines", "Steroid promotion", "Body shaming"],
+    "notes": "Always get member permission for transformation photos. Include disclaimer on results."
+  }
+}

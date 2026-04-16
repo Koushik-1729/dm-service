@@ -1,0 +1,41 @@
+{
+  "sector": "ecommerce",
+  "display_name": "E-commerce / DTC Brand",
+  "channels": [
+    {"name": "meta_ads", "priority": 1, "reason": "Primary acquisition channel for DTC brands"},
+    {"name": "instagram", "priority": 2, "posts_per_week": 5, "reason": "Brand building + shoppable posts"},
+    {"name": "email", "priority": 3, "reason": "Cart abandonment, post-purchase, retention flows"},
+    {"name": "whatsapp", "priority": 4, "messages_per_week": 2, "reason": "Order updates, cart recovery, offers"},
+    {"name": "google_ads", "priority": 5, "reason": "Google Shopping and branded search"}
+  ],
+  "content_types": ["post", "reel_script", "story", "campaign_message", "ad_copy", "email_campaign"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Product spotlight / new launch"},
+    "tuesday": {"channel": "instagram", "type": "reel_script", "topic": "Unboxing / product in use"},
+    "wednesday": {"channel": "instagram", "type": "story", "topic": "Customer review / UGC"},
+    "thursday": {"channel": "instagram", "type": "post", "topic": "Behind the brand / founder story"},
+    "friday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Weekend offer / flash sale"},
+    "saturday": {"channel": "instagram", "type": "reel_script", "topic": "How to style / how to use"},
+    "sunday": {"channel": "instagram", "type": "story", "topic": "Poll / quiz / engagement"}
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 1200,
+    "avg_monthly_footfall": 1000,
+    "avg_cpc": 15,
+    "avg_ctr": 2.0,
+    "avg_conversion_rate": 0.025,
+    "best_posting_times": ["10:00", "14:00", "20:00"]
+  },
+  "festivals": [
+    {"name": "Diwali Sale", "month": 10, "campaign": "Biggest sale of the year"},
+    {"name": "Valentine's Day", "month": 2, "campaign": "Valentine's gift guide + bundle offers"},
+    {"name": "Rakhi", "month": 8, "campaign": "Rakhi gifts — sibling combos"},
+    {"name": "End of Season", "month": 1, "campaign": "Clearance sale — up to 60% off"},
+    {"name": "Republic Day", "month": 1, "campaign": "Republic Day sale"}
+  ],
+  "compliance": {
+    "required_mentions": ["Return policy visible", "Pricing including taxes"],
+    "prohibited": ["Fake reviews", "Misleading product images", "Hidden charges"],
+    "notes": "Follow consumer protection e-commerce rules. Display MRP and seller details."
+  }
+}

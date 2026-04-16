@@ -1,0 +1,47 @@
+{
+  "sector": "salon",
+  "display_name": "Salon / Spa / Beauty",
+  "channels": [
+    {"name": "instagram", "priority": 1, "posts_per_week": 5, "reason": "Beauty is visual — Instagram is the #1 discovery channel"},
+    {"name": "google_business", "priority": 2, "posts_per_week": 2, "reason": "Salon near me searches and reviews"},
+    {"name": "whatsapp", "priority": 3, "messages_per_week": 2, "reason": "Booking reminders and loyalty offers"},
+    {"name": "facebook", "priority": 4, "reason": "Event promotion and older demographics"}
+  ],
+  "content_types": ["post", "reel_script", "story", "campaign_message", "gmb_post"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Transformation / before-after"},
+    "tuesday": {"channel": "instagram", "type": "story", "topic": "Daily salon life / behind the chair"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Styling tips / product recommendation"},
+    "thursday": {"channel": "google_business", "type": "gmb_post", "topic": "Service spotlight or offer"},
+    "friday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Weekend booking push / new service launch"},
+    "saturday": {"channel": "instagram", "type": "post", "topic": "Client selfie / UGC repost"},
+    "sunday": {"channel": "instagram", "type": "story", "topic": "Self-care Sunday tips / poll"}
+  },
+  "content_guidelines": {
+    "tone": "Glamorous yet approachable. Aspirational but relatable.",
+    "hashtag_strategy": "#SalonLife #HairTransformation #BeautyTips + local tags",
+    "cta_patterns": ["Book your slot", "DM to reserve", "Walk-in today", "Show this for 10% off"],
+    "visual_style": "Before/after transformations, close-up hair/nail work, salon ambiance, client selfies"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 800,
+    "avg_monthly_footfall": 300,
+    "avg_cpc": 10,
+    "avg_ctr": 3.0,
+    "avg_conversion_rate": 0.22,
+    "best_posting_times": ["10:00", "14:00", "19:00"],
+    "top_content_types": ["transformations", "reels", "client_ugc", "tips"]
+  },
+  "festivals": [
+    {"name": "Wedding Season", "month": 11, "campaign": "Bridal package launch"},
+    {"name": "Karva Chauth", "month": 10, "campaign": "Mehendi + makeup packages"},
+    {"name": "Valentine's Day", "month": 2, "campaign": "Couple spa package"},
+    {"name": "New Year", "month": 12, "campaign": "New year new look — makeover offer"},
+    {"name": "Diwali", "month": 10, "campaign": "Festive glow packages"}
+  ],
+  "compliance": {
+    "required_mentions": [],
+    "prohibited": ["Unrealistic before/after edits", "Body shaming content", "Misleading product claims"],
+    "notes": "Always get client permission before posting their photos"
+  }
+}

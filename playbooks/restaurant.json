@@ -1,0 +1,55 @@
+{
+  "sector": "restaurant",
+  "display_name": "Restaurant / Cafe / Food Business",
+  "channels": [
+    {"name": "instagram", "priority": 1, "posts_per_week": 4, "reason": "Food is visual — Instagram drives discovery"},
+    {"name": "whatsapp", "priority": 2, "messages_per_week": 2, "reason": "Repeat customer retention and offers"},
+    {"name": "google_business", "priority": 3, "posts_per_week": 2, "reason": "'restaurants near me' is highest-volume local search"},
+    {"name": "google_ads", "priority": 4, "reason": "Capture high-intent local searches"},
+    {"name": "facebook", "priority": 5, "reason": "Event promotion and community building"}
+  ],
+  "content_types": ["post", "reel_script", "story", "campaign_message", "gmb_post"],
+  "posting_schedule": {
+    "monday": {"channel": "instagram", "type": "post", "topic": "Signature dish spotlight"},
+    "tuesday": {"channel": "instagram", "type": "story", "topic": "Behind the kitchen"},
+    "wednesday": {"channel": "instagram", "type": "reel_script", "topic": "Food preparation / plating"},
+    "thursday": {"channel": "google_business", "type": "gmb_post", "topic": "Weekly special or offer"},
+    "friday": {"channel": "whatsapp", "type": "campaign_message", "topic": "Weekend offer / reservation push"},
+    "saturday": {"channel": "instagram", "type": "post", "topic": "Weekend vibes / ambiance / customer UGC"},
+    "sunday": {"channel": "instagram", "type": "story", "topic": "Sunday special / poll / engagement"}
+  },
+  "content_guidelines": {
+    "tone": "Warm, inviting, slightly casual. Use food emojis sparingly.",
+    "hashtag_strategy": "Mix local hashtags (#HyderabadFood) + niche (#ThirdWaveCoffee) + broad (#FoodieLife)",
+    "cta_patterns": ["Visit us today", "Reserve your table", "Order now", "Show this message for X% off"],
+    "visual_style": "Close-up food shots, steam/sizzle, warm lighting, overhead shots"
+  },
+  "cold_start_defaults": {
+    "avg_order_value": 300,
+    "avg_monthly_footfall": 500,
+    "avg_cpc": 12,
+    "avg_ctr": 2.8,
+    "avg_conversion_rate": 0.20,
+    "best_posting_times": ["11:30", "18:00", "20:00"],
+    "top_content_types": ["food_reels", "behind_the_scenes", "daily_specials", "customer_ugc"]
+  },
+  "city_benchmarks": {
+    "hyderabad": {"avg_cpc": 10, "avg_ctr": 3.0, "popular_keywords": ["biryani near me", "best cafe hyderabad"]},
+    "bangalore": {"avg_cpc": 15, "avg_ctr": 2.5, "popular_keywords": ["brunch bangalore", "coffee shop indiranagar"]},
+    "mumbai": {"avg_cpc": 20, "avg_ctr": 2.2, "popular_keywords": ["restaurants bandra", "cafe mumbai"]},
+    "delhi": {"avg_cpc": 18, "avg_ctr": 2.3, "popular_keywords": ["best restaurants delhi", "cafe connaught place"]}
+  },
+  "festivals": [
+    {"name": "Diwali", "month": 10, "campaign": "Festive menu launch + family dining offer"},
+    {"name": "New Year", "month": 12, "campaign": "NYE party / special dinner package"},
+    {"name": "Valentine's Day", "month": 2, "campaign": "Couples dinner package + pre-booking"},
+    {"name": "Eid", "month": 3, "campaign": "Eid special menu + family feast offer"},
+    {"name": "IPL Season", "month": 4, "campaign": "Live screening + match day combos"},
+    {"name": "Independence Day", "month": 8, "campaign": "Tri-color themed menu / patriotic offer"}
+  ],
+  "compliance": {
+    "required_mentions": ["FSSAI license number in bio/listing"],
+    "prohibited": ["Health claims about food", "Fake review solicitation"],
+    "notes": "Alcohol promotion subject to state-specific advertising laws"
+  }
+}
