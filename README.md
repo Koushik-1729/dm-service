@@ -50,3 +50,4 @@ docker run -p 8000:8000 --env-file .env marketing-service
 - Health: http://localhost:8000/marketing-service/health
 # dm-service
 # dm-service
+# dm-service
