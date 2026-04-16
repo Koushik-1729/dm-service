@@ -1,6 +1,6 @@
 # Marketing Service
 
-AI Digital Marketing Automation — Revenue OS for SMBs.
+AI Digital Marketing Automation
 
 ## Architecture
 
