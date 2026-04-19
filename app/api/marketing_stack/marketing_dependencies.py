@@ -13,6 +13,13 @@ from app.infra.marketing_stack.repositories.campaign_repository_impl import Camp
 from app.infra.marketing_stack.repositories.lead_repository_impl import LeadRepositoryImpl
 from app.infra.marketing_stack.repositories.metrics_repository_impl import MetricsRepositoryImpl
 from app.infra.marketing_stack.repositories.usage_repository_impl import UsageRepositoryImpl
+from app.infra.marketing_stack.repositories.user_repository_impl import UserRepositoryImpl
+from app.infra.marketing_stack.repositories.user_identity_repository_impl import UserIdentityRepositoryImpl
+from app.infra.marketing_stack.repositories.marketing_event_repository_impl import MarketingEventRepositoryImpl
+from app.infra.marketing_stack.repositories.conversion_event_repository_impl import ConversionEventRepositoryImpl
+from app.infra.marketing_stack.repositories.revenue_event_repository_impl import RevenueEventRepositoryImpl
+from app.infra.marketing_stack.repositories.prediction_score_repository_impl import PredictionScoreRepositoryImpl
+from app.infra.marketing_stack.repositories.decision_log_repository_impl import DecisionLogRepositoryImpl
 
 # we can use External adapters here if you want(WIP)
 from app.infra.marketing_stack.external.claude_adapter import ClaudeAdapter
@@ -34,6 +41,12 @@ from app.core.marketing_stack.services.optimization_service import OptimizationS
 from app.core.marketing_stack.services.lead_service import LeadService
 from app.core.marketing_stack.services.attribution_service import AttributionService
 from app.core.marketing_stack.services.orchestrator_service import OrchestratorService
+from app.core.marketing_stack.services.identity_service import IdentityService
+from app.core.marketing_stack.services.event_ingestion_service import EventIngestionService
+from app.core.marketing_stack.services.journey_service import JourneyService
+from app.core.marketing_stack.services.feature_service import FeatureService
+from app.core.marketing_stack.services.prediction_service import PredictionService
+from app.core.marketing_stack.services.decision_service import DecisionService
 
 
 # Every Repository That Is Used In this dependences
@@ -68,6 +81,34 @@ def get_metrics_repository(db: Session = Depends(get_db)) -> MetricsRepositoryIm
 
 def get_usage_repository(db: Session = Depends(get_db)) -> UsageRepositoryImpl:
     return UsageRepositoryImpl(db)
+
+
+def get_user_repository(db: Session = Depends(get_db)) -> UserRepositoryImpl:
+    return UserRepositoryImpl(db)
+
+
+def get_user_identity_repository(db: Session = Depends(get_db)) -> UserIdentityRepositoryImpl:
+    return UserIdentityRepositoryImpl(db)
+
+
+def get_marketing_event_repository(db: Session = Depends(get_db)) -> MarketingEventRepositoryImpl:
+    return MarketingEventRepositoryImpl(db)
+
+
+def get_conversion_event_repository(db: Session = Depends(get_db)) -> ConversionEventRepositoryImpl:
+    return ConversionEventRepositoryImpl(db)
+
+
+def get_revenue_event_repository(db: Session = Depends(get_db)) -> RevenueEventRepositoryImpl:
+    return RevenueEventRepositoryImpl(db)
+
+
+def get_prediction_score_repository(db: Session = Depends(get_db)) -> PredictionScoreRepositoryImpl:
+    return PredictionScoreRepositoryImpl(db)
+
+
+def get_decision_log_repository(db: Session = Depends(get_db)) -> DecisionLogRepositoryImpl:
+    return DecisionLogRepositoryImpl(db)
 
 
 # ─── External Adapter Factories ─────────────────────────────────────
@@ -225,6 +266,86 @@ def get_attribution_service(
     return AttributionService(
         lead_repository=lead_repo,
         metrics_repository=metrics_repo,
+    )
+
+
+def get_identity_service(
+    user_repo: UserRepositoryImpl = Depends(get_user_repository),
+    user_identity_repo: UserIdentityRepositoryImpl = Depends(get_user_identity_repository),
+) -> IdentityService:
+    return IdentityService(
+        user_repository=user_repo,
+        user_identity_repository=user_identity_repo,
+    )
+
+
+def get_event_ingestion_service(
+    identity_service: IdentityService = Depends(get_identity_service),
+    marketing_event_repo: MarketingEventRepositoryImpl = Depends(get_marketing_event_repository),
+    conversion_event_repo: ConversionEventRepositoryImpl = Depends(get_conversion_event_repository),
+    revenue_event_repo: RevenueEventRepositoryImpl = Depends(get_revenue_event_repository),
+) -> EventIngestionService:
+    return EventIngestionService(
+        identity_service=identity_service,
+        marketing_event_repository=marketing_event_repo,
+        conversion_event_repository=conversion_event_repo,
+        revenue_event_repository=revenue_event_repo,
+    )
+
+
+def get_journey_service(
+    user_repo: UserRepositoryImpl = Depends(get_user_repository),
+    marketing_event_repo: MarketingEventRepositoryImpl = Depends(get_marketing_event_repository),
+    event_ingestion_service: EventIngestionService = Depends(get_event_ingestion_service),
+    messaging_port: WhatsAppAdapter = Depends(get_messaging_port),
+    conversation_service: ConversationService = Depends(get_conversation_service),
+) -> JourneyService:
+    return JourneyService(
+        user_repository=user_repo,
+        marketing_event_repository=marketing_event_repo,
+        event_ingestion_service=event_ingestion_service,
+        messaging_port=messaging_port,
+        conversation_service=conversation_service,
+    )
+
+
+def get_feature_service(
+    user_repo: UserRepositoryImpl = Depends(get_user_repository),
+    marketing_event_repo: MarketingEventRepositoryImpl = Depends(get_marketing_event_repository),
+    metrics_repo: MetricsRepositoryImpl = Depends(get_metrics_repository),
+) -> FeatureService:
+    return FeatureService(
+        user_repository=user_repo,
+        marketing_event_repository=marketing_event_repo,
+        metrics_repository=metrics_repo,
+    )
+
+
+def get_prediction_service(
+    user_repo: UserRepositoryImpl = Depends(get_user_repository),
+    feature_service: FeatureService = Depends(get_feature_service),
+    prediction_repo: PredictionScoreRepositoryImpl = Depends(get_prediction_score_repository),
+) -> PredictionService:
+    return PredictionService(
+        user_repository=user_repo,
+        feature_service=feature_service,
+        prediction_score_repository=prediction_repo,
+    )
+
+
+def get_decision_service(
+    user_repo: UserRepositoryImpl = Depends(get_user_repository),
+    marketing_event_repo: MarketingEventRepositoryImpl = Depends(get_marketing_event_repository),
+    prediction_repo: PredictionScoreRepositoryImpl = Depends(get_prediction_score_repository),
+    prediction_service: PredictionService = Depends(get_prediction_service),
+    decision_log_repo: DecisionLogRepositoryImpl = Depends(get_decision_log_repository),
+) -> DecisionService:
+    return DecisionService(
+        user_repository=user_repo,
+        marketing_event_repository=marketing_event_repo,
+        prediction_score_repository=prediction_repo,
+        prediction_service=prediction_service,
+        decision_log_repository=decision_log_repo,
     )
 
 
