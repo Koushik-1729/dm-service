@@ -11,6 +11,10 @@ from app.monitoring.health import health_router
 from app.monitoring.monitoring import PrometheusMiddleware, metrics_endpoint, setting_otlp
 from app.api.marketing_stack.routes.webhook_router import router as webhook_router
 from app.api.marketing_stack.routes.cron_router import router as cron_router
+from app.api.marketing_stack.routes.event_router import router as event_router
+from app.api.marketing_stack.routes.journey_router import router as journey_router
+from app.api.marketing_stack.routes.prediction_router import router as prediction_router
+from app.api.marketing_stack.routes.decision_router import router as decision_router
 
 # Setup logging
 setup_logging()
@@ -58,6 +62,18 @@ app.include_router(webhook_router, prefix=BASE_PREFIX)
 
 # Cron triggers
 app.include_router(cron_router, prefix=BASE_PREFIX)
+
+# Event ingestion
+app.include_router(event_router, prefix=BASE_PREFIX)
+
+# Journey lifecycle
+app.include_router(journey_router, prefix=BASE_PREFIX)
+
+# Prediction scoring
+app.include_router(prediction_router, prefix=BASE_PREFIX)
+
+# Decision engine
+app.include_router(decision_router, prefix=BASE_PREFIX)
 
 # Phase 2: Dashboard routes (uncomment when ready)
 # from app.api.marketing_stack.routes.client_router import router as client_router

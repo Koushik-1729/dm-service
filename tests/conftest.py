@@ -13,6 +13,13 @@ from app.core.marketing_stack.models.campaign import Campaign
 from app.core.marketing_stack.models.lead import Lead
 from app.core.marketing_stack.models.daily_metrics import DailyMetrics
 from app.core.marketing_stack.models.usage import Usage
+from app.core.marketing_stack.models.user import User
+from app.core.marketing_stack.models.user_identity import UserIdentity
+from app.core.marketing_stack.models.marketing_event import MarketingEvent
+from app.core.marketing_stack.models.conversion_event import ConversionEvent
+from app.core.marketing_stack.models.revenue_event import RevenueEvent
+from app.core.marketing_stack.models.prediction_score import PredictionScore
+from app.core.marketing_stack.models.decision_log import DecisionLog
 
 from app.core.marketing_stack.outbound.repositories.client_repository import ClientRepository
 from app.core.marketing_stack.outbound.repositories.conversation_repository import ConversationRepository
@@ -22,6 +29,13 @@ from app.core.marketing_stack.outbound.repositories.campaign_repository import C
 from app.core.marketing_stack.outbound.repositories.lead_repository import LeadRepository
 from app.core.marketing_stack.outbound.repositories.metrics_repository import MetricsRepository
 from app.core.marketing_stack.outbound.repositories.usage_repository import UsageRepository
+from app.core.marketing_stack.outbound.repositories.user_repository import UserRepository
+from app.core.marketing_stack.outbound.repositories.user_identity_repository import UserIdentityRepository
+from app.core.marketing_stack.outbound.repositories.marketing_event_repository import MarketingEventRepository
+from app.core.marketing_stack.outbound.repositories.conversion_event_repository import ConversionEventRepository
+from app.core.marketing_stack.outbound.repositories.revenue_event_repository import RevenueEventRepository
+from app.core.marketing_stack.outbound.repositories.prediction_score_repository import PredictionScoreRepository
+from app.core.marketing_stack.outbound.repositories.decision_log_repository import DecisionLogRepository
 
 from app.core.marketing_stack.outbound.external.ai_provider_port import AIProviderPort
 from app.core.marketing_stack.outbound.external.web_scraper_port import WebScraperPort
@@ -258,6 +272,162 @@ class MockUsageRepository(UsageRepository):
         return [u for u in self._store if u.client_id == client_id][:limit]
 
 
+class MockUserRepository(UserRepository):
+    def __init__(self):
+        self._store: Dict[UUID, User] = {}
+
+    async def create(self, user: User) -> User:
+        if not user.id:
+            user.id = uuid4()
+        user.created_at = datetime.utcnow()
+        self._store[user.id] = user
+        return user
+
+    async def get_by_id(self, user_id: UUID) -> Optional[User]:
+        return self._store.get(user_id)
+
+    async def get_by_external_ref(self, client_id: UUID, external_ref: str) -> Optional[User]:
+        for user in self._store.values():
+            if user.client_id == client_id and user.external_ref == external_ref:
+                return user
+        return None
+
+    async def update(self, user: User) -> User:
+        self._store[user.id] = user
+        return user
+
+    async def list_by_client(self, client_id: UUID, limit: int = 100) -> List[User]:
+        return [user for user in self._store.values() if user.client_id == client_id][:limit]
+
+
+class MockUserIdentityRepository(UserIdentityRepository):
+    def __init__(self):
+        self._store: Dict[UUID, UserIdentity] = {}
+
+    async def create(self, identity: UserIdentity) -> UserIdentity:
+        if not identity.id:
+            identity.id = uuid4()
+        identity.created_at = datetime.utcnow()
+        self._store[identity.id] = identity
+        return identity
+
+    async def get_by_type_and_value(
+        self,
+        client_id: UUID,
+        identity_type: str,
+        identity_value: str,
+    ) -> Optional[UserIdentity]:
+        for identity in self._store.values():
+            if (
+                identity.client_id == client_id
+                and identity.identity_type == identity_type
+                and identity.identity_value == identity_value
+            ):
+                return identity
+        return None
+
+    async def list_by_user(self, user_id: UUID) -> List[UserIdentity]:
+        return [identity for identity in self._store.values() if identity.user_id == user_id]
+
+
+class MockMarketingEventRepository(MarketingEventRepository):
+    def __init__(self):
+        self._store: Dict[UUID, MarketingEvent] = {}
+
+    async def create(self, event: MarketingEvent) -> MarketingEvent:
+        if not event.id:
+            event.id = uuid4()
+        event.created_at = datetime.utcnow()
+        self._store[event.id] = event
+        return event
+
+    async def get_by_id(self, event_id: UUID) -> Optional[MarketingEvent]:
+        return self._store.get(event_id)
+
+    async def list_by_user(self, user_id: UUID, limit: int = 100) -> List[MarketingEvent]:
+        return [event for event in self._store.values() if event.user_id == user_id][:limit]
+
+
+class MockConversionEventRepository(ConversionEventRepository):
+    def __init__(self):
+        self._store: Dict[UUID, ConversionEvent] = {}
+
+    async def create(self, event: ConversionEvent) -> ConversionEvent:
+        if not event.id:
+            event.id = uuid4()
+        event.created_at = datetime.utcnow()
+        self._store[event.id] = event
+        return event
+
+    async def get_by_id(self, conversion_event_id: UUID) -> Optional[ConversionEvent]:
+        return self._store.get(conversion_event_id)
+
+    async def list_by_user(self, user_id: UUID, limit: int = 100) -> List[ConversionEvent]:
+        return [event for event in self._store.values() if event.user_id == user_id][:limit]
+
+
+class MockRevenueEventRepository(RevenueEventRepository):
+    def __init__(self):
+        self._store: Dict[UUID, RevenueEvent] = {}
+
+    async def create(self, event: RevenueEvent) -> RevenueEvent:
+        if not event.id:
+            event.id = uuid4()
+        event.created_at = datetime.utcnow()
+        self._store[event.id] = event
+        return event
+
+    async def get_by_id(self, revenue_event_id: UUID) -> Optional[RevenueEvent]:
+        return self._store.get(revenue_event_id)
+
+    async def list_by_user(self, user_id: UUID, limit: int = 100) -> List[RevenueEvent]:
+        return [event for event in self._store.values() if event.user_id == user_id][:limit]
+
+
+class MockPredictionScoreRepository(PredictionScoreRepository):
+    def __init__(self):
+        self._store: Dict[UUID, PredictionScore] = {}
+
+    async def create(self, prediction: PredictionScore) -> PredictionScore:
+        if not prediction.id:
+            prediction.id = uuid4()
+        prediction.created_at = datetime.utcnow()
+        self._store[prediction.id] = prediction
+        return prediction
+
+    async def get_latest_by_user(self, user_id: UUID) -> Optional[PredictionScore]:
+        for prediction in reversed(list(self._store.values())):
+            if prediction.user_id == user_id:
+                return prediction
+        return None
+
+    async def list_latest_by_client(self, client_id: UUID, limit: int = 100) -> List[PredictionScore]:
+        predictions = [prediction for prediction in self._store.values() if prediction.client_id == client_id]
+        return predictions[:limit]
+
+
+class MockDecisionLogRepository(DecisionLogRepository):
+    def __init__(self):
+        self._store: Dict[UUID, DecisionLog] = {}
+
+    async def create(self, decision: DecisionLog) -> DecisionLog:
+        if not decision.id:
+            decision.id = uuid4()
+        decision.created_at = datetime.utcnow()
+        self._store[decision.id] = decision
+        return decision
+
+    async def get_latest_by_user(self, user_id: UUID) -> Optional[DecisionLog]:
+        for decision in reversed(list(self._store.values())):
+            if decision.user_id == user_id:
+                return decision
+        return None
+
+    async def list_by_client(self, client_id: UUID, limit: int = 100) -> List[DecisionLog]:
+        decisions = [decision for decision in self._store.values() if decision.client_id == client_id]
+        return decisions[:limit]
+
+
 # ─── Mock External Adapters ─────────────────────────────────────────
 
 class MockAIProvider(AIProviderPort):
@@ -421,6 +591,41 @@ def mock_social_media():
 @pytest.fixture
 def mock_playbook_loader():
     return MockPlaybookLoader()
+
+
+@pytest.fixture
+def mock_user_repo():
+    return MockUserRepository()
+
+
+@pytest.fixture
+def mock_user_identity_repo():
+    return MockUserIdentityRepository()
+
+
+@pytest.fixture
+def mock_marketing_event_repo():
+    return MockMarketingEventRepository()
+
+
+@pytest.fixture
+def mock_conversion_event_repo():
+    return MockConversionEventRepository()
+
+
+@pytest.fixture
+def mock_revenue_event_repo():
+    return MockRevenueEventRepository()
+
+
+@pytest.fixture
+def mock_prediction_score_repo():
+    return MockPredictionScoreRepository()
+
+
+@pytest.fixture
+def mock_decision_log_repo():
+    return MockDecisionLogRepository()
 
 
 @pytest.fixture
